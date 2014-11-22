@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<polymer-element name="x-pizza-toppings" attributes="ingredients">
+  <template>
+    <div>
+      <select id="ingredients" value="{{current}}">
+        <option value="">Choose a topping...</option>
+        <template repeat="{{ingredient in ingredients}}">
+          <option>{{ingredient}}</option>
+        </template>
+      </select>
+      <button id="add" on-click="{{add}}" type="button">
+        Add {{name}} topping
+      </button>
+
+      <h1>Toppings added</h1>
+      <template repeat="{{ingredient in toppings}}">
+        <span>{{ingredient}}</span>
+      </template>
+    </div>
+  </template>
+
+  <script>
+    Polymer('x-pizza-toppings', {
+      add: function() {
+        this.toppings.push(this.current);
+        this.fire('topping-change', {action: 'add', item: this.current});
+      },
+
+      created: function() {
+        this.ingredients = [];
+        this.toppings = [];
+      },
+
+      ready: function() {
+        this.addEventListener('topping-change', function(e){
+          console.log(e.detail)
+        });
+      },
+    });
+  </script>
+</polymer-element>

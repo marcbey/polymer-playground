@@ -1,0 +1,19 @@
+<polymer-element name="x-child" attributes="childCount">
+  <template>
+    <div>
+      <h2>Child</h2>
+      <span>Count: {{childCount}}</span>
+    </div>
+  </template>
+
+  <script>
+    Polymer('x-child', {
+      childCount: 0,
+
+     childCountChanged: function(oldValue, newValue) {
+        console.log('Child saw: ' + oldValue + ' -> ' + newValue + '.');
+      }
+    });
+  </script>
+
+</polymer-element>

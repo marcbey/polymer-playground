@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+  <body>
+    <h1>Template Examples</h1>
+
+    <template id="template">
+      <h1>Yes, Web Components :-)</h1>
+      <img src="http://webcomponents.org/img/logo.svg">
+      <style>
+        h1 {
+          color: green;
+        }
+      </style>
+      <script>
+        alert('styles & JS sind im template tag isoliert')
+      </script>
+    </template>
+
+    <script>
+      var template = document.querySelector('#template');
+      var clone = document.importNode(template.content, true);
+      var host = document.querySelector('body');
+      host.appendChild(clone);
+    </script>
+
+  </body>
+</html>

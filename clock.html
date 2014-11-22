@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="web_components/analog-clock.html">
+    <style>
+      #berlin {
+        color: green;
+      }
+      #la {
+        color: red;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <analog-clock timezone="Europe/Berlin" id="berlin"></analog-clock>
+    <analog-clock timezone="America/Los_Angeles" id="la"></analog-clock>
+  </body>
+</html>

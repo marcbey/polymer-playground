@@ -1,0 +1,53 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<script src="../bower_components/js-md5/js/md5.js"></script>
+<polymer-element name="gravatar-image" attributes="size email default forcedefault secure rating">
+  <template>
+    <img src="{{src}}"></img>
+  </template>
+
+  <script>
+    Polymer({
+      ready: function() {
+        var site = this.secure == undefined ? "http://www.gravatar.com" : "https://secure.gravatar.com";
+        var hash = md5(this.email.trim().toLowerCase());
+        var query = this.queryString();
+        this.src = site + "/avatar/" + hash + query;
+      },
+
+      queryString: function() {
+        var queries = [];
+        queries.push(this.sizeQuery());
+        queries.push(this.forceDefaultQuery());
+        queries.push(this.ratingQuery());
+        queries.push(this.defaultQuery());
+
+        return "?" + queries.join("&");
+      },
+
+      defaultQuery: function() {
+        if(this.default == undefined) {
+          return null;
+        } else if(this.default.match(/(http|https)/)) {
+          return "d=" + encodeURIComponent(this.default);
+        } else if(this.default.match(/\w/)) {
+          return "d=" + this.default;
+        } else {
+          return null;
+        }
+      },
+
+      sizeQuery: function() {
+        return "s=" + (this.size || "20");
+      },
+
+      forceDefaultQuery: function() {
+        return (this.forcedefault == undefined) ? null : "f=y";
+      },
+
+      ratingQuery: function() {
+        return (this.rating == undefined) ? null : "r=" + this.rating;
+      }
+    });
+  </script>
+</polymer-element>
+

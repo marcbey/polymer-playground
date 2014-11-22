@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="bower_components/polymer/polymer.html">
+
+    <polymer-element name="click-sink">
+      <template>
+        <style>
+          :host {
+            display: none;
+          }
+        </style>
+      </template>
+
+      <script>
+        Polymer('click-sink', {
+          ready: function() {
+            var that = this;
+            this.ownerDocument.addEventListener('click', function(e){
+              var click = {'x': e.clientX, 'y': e.clientY};
+              that.fire('click-sink-click', click);
+            });
+          }
+        });
+      </script>
+    </polymer-element>
+  </head>
+
+  <body>
+    <click-sink>
+  </body>
+  <script>
+    document.body.addEventListener('click-sink-click', function(e){
+      var click = e.detail;
+      console.log(
+        'There was a click at (' + click.x + ',' + click.y + ')'
+      );
+    });
+  </script>
+</html>
+

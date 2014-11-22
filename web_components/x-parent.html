@@ -1,0 +1,24 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="x-child.html">
+
+<polymer-element name="x-parent">
+  <template>
+    <div>
+      <h2>Parent</h2>
+      <span>Count: {{parentCount}}</span>
+    </div>
+    <x-child childCount="{{parentCount}}"></x-child>
+  </template>
+
+  <script>
+    Polymer('x-parent', {
+      parentCount: 0,
+
+      ready: function() {
+        var that = this;
+        setInterval(function(){that.parentCount++}, 1000);
+      }
+    });
+  </script>
+</polymer-element>
+

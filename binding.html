@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="bower_components/polymer/polymer.html">
+
+    <polymer-element name="x-binding" attributes="marconmars">
+      <template>
+        <input type="text" value="{{marconmars}}"></input>
+
+        <button on-click="{{increase}}" type="button">Increase</button>
+
+        <span>{{marconmars}}</span>
+      </template>
+
+      <script>
+        Polymer('x-binding', {
+          increase: function() {
+            this.marconmars = parseInt(this.marconmars) + 1;
+          },
+          created: function() {
+            this.marconmars = 786542;
+          }
+        });
+      </script>
+    </polymer-element>
+  </head>
+
+  <body>
+    <x-binding>
+  </body>
+</html>
+
