@@ -1,0 +1,13 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<polymer-element name="bordered-gravatar-image" extends="gravatar-image" attributes="email bordersize" noscript>
+  <template>
+    <!-- A shadow element render's the extended element's shadow dom here. -->
+    <shadow></shadow>
+    <style>
+      :host::shadow img {
+        border: red 5px solid;
+      }
+    </style>
+  </template>
+</polymer-element>
+
